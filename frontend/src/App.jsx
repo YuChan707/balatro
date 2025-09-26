@@ -1,10 +1,11 @@
 import "./App.css";
 import Card from "./components/Card";
+import testData from "./data/test.json";
 
 function App() {
   return (
     <>
-      <Card side="back" />
+      <Card cardDetail={testData[4]} isRetry={true} />
     </>
   );
 }

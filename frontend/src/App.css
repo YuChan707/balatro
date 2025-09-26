@@ -1,0 +1,8 @@
+.text-stroke {
+  -webkit-text-stroke: 3px #1e1e2f;
+  -webkit-text-fill-color: #ffc857;
+}
+
+.name-stroke {
+  -webkit-text-fill-color: #1e1e2f;
+}

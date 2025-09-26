@@ -1,10 +1,10 @@
 import "./App.css";
-import Card from "./components/Card";
+import Gameplay from "./game/Gameplay";
 
 function App() {
   return (
     <>
-      <Card />
+      <Gameplay />
     </>
   );
 }

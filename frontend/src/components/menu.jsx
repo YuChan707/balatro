@@ -1,17 +1,16 @@
 import React from 'react';
 export default function Menu() {
     return (
-        <div>
-      <h1 className='title'>Menu</h1>
-      <div className='Button-row'>
-        <button>Set</button>
-      
-      
-        <button >competiton</button>
+        <div className='background-image'>
+      <h1 className='title'>Balatest</h1>
+      <div className='nameIn'>
+      <input className="Player"type="text" placeholder="Subject Name"/>
+      <button>Play</button>
         
       </div>
+      
       <div className='upLoad'>
-        <button>Upload More </button>
+        <button className='upbutton'>Upload  </button>
       </div>
         
  

@@ -1,7 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&display=swap");
 @import "tailwindcss";
 
-html {
+/*@font-face {*/
+/*font-family: "Baloo 2";*/
+/*src: url("/fonts/Baloo2.ttf") format("truetype");*/
+/*font-weight: 100 700;*/
+/*font-style: normal;*/
+/*font-display: swap;*/
+/*}*/
+
+html,
+body {
   font-family: "Baloo 2", sans-serif;
 }
 

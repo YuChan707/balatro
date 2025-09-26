@@ -41,6 +41,16 @@ export default function UploadButton() {
     }
   };
 
+  // Handler for the PLAY button: require a file, otherwise show user-friendly message
+  const play = () => {
+    if (!file) {
+      setStatus("To PLAY need to select your material (boss)");
+      return;
+    }
+    // if file exists, start upload flow
+    upload();
+  };
+
   return (
     <div className="upload-container">
       <h2>Balatest</h2>
@@ -66,8 +76,8 @@ export default function UploadButton() {
         />
       </label>
 
-      <button className="upload-btn" onClick={upload} disabled={!file}>
-        summit your request
+      <button className="upload-btn" onClick={play}>
+        PLAY
       </button>
 
       <div>{status}</div>

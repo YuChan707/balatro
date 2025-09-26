@@ -1,22 +1,16 @@
 import React from 'react';
 export default function Menu() {
-    return (
-        <div>
+  return (
+    <div>
       <h1 className='title'>Menu</h1>
       <div className='Button-row'>
-        <button>Set</button>
-      
-      
-        <button >competiton</button>
-        
+        <h4>Set</h4>
+        <h4>competition</h4>
       </div>
-      <div className='upLoad'>
-        <button>Upload More </button>
-      </div>
-        
- 
-           
-
-        </div>
-    );
+      <form action="http://localhost:5000/success" method="post" encType="multipart/form-data">
+        <input type="file" name="file" />
+        <input type="submit" value="Upload" />
+      </form>
+    </div>
+  );
 }

@@ -7,7 +7,7 @@ import CardFlip from "./CardboardQuestion";
 
 const MAX_HAND = 3;
 
-function Game({ cards }) {
+function Game({ cards, setInGame }) {
   const [drawPile, setDrawPile] = useState([]);
   const [hand, setHand] = useState([]);
   const [discardPile, setDiscardPile] = useState({});

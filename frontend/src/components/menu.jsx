@@ -1,6 +1,6 @@
 import React from "react";
 import logo from "./../assets/logo.svg";
-
+import Button from './button';
 export default function Menu() {
   return (
     <div className="background-image">
@@ -17,6 +17,7 @@ export default function Menu() {
       <div className="upLoad">
         <button className="upbutton">Upload</button>
       </div>
+      
     </div>
   );
 }

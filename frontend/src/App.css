@@ -35,10 +35,16 @@
   
 }
 .Button{
-  color:white;
+  line-height: 32px;
+  color:white !important;
+  font-weight: bold;
   background-color: black;
   font-family: "Baloo 2", sans-serif;
-  font-size: 30px;
+  font-size: 32px;
+  padding: 12px 36px;
+  
+  
+  
 }
 
 

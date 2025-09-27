@@ -8,7 +8,7 @@ function App() {
     <>
 
      <Menu/>
-      <Button text={''}/>
+    
 
      
 

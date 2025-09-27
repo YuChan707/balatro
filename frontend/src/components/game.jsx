@@ -22,13 +22,27 @@ function Game({ cards, setInGame }) {
   const [selectedCard, setSelectedCard] = useState(null);
   const [cardAnswered, setCardAnswered] = useState(false);
   const [rotateBoss, setRotateBoss] = useState(false);
+  const [takingDmg, setTakingDmg] = useState(false);
+  const [dealingDmg, setDealingDmg] = useState(false);
 
   useEffect(() => {
     setRotateBoss(true);
+    setDealingDmg(true);
+
+    setTimeout(() => {
+      setDealingDmg(false);
+    }, 500);
     setTimeout(() => {
       setRotateBoss(false);
     }, 800);
   }, [bossHP]);
+
+  useEffect(() => {
+    setTakingDmg(true);
+    setTimeout(() => {
+      setTakingDmg(false);
+    }, 500);
+  }, [userHP]);
 
   const takeDmgBy = (amount) => {
     console.log("Taking dmg: ", amount);
@@ -136,9 +150,18 @@ function Game({ cards, setInGame }) {
       ) : (
         <>
           <div className="flex flex-col items-center">
-            <span className="font-bold text-black text-center text-[32px]">
-              PROFESSOR QUIZ
-            </span>
+            <div className="flex gap-2 items-center">
+              <span className="font-bold text-white text-center text-[32px]">
+                PROFESSOR QUIZZ
+              </span>
+              {dealingDmg ? (
+                <span className="text-white font-extrabold text-[32px] bg-red-700 rounded-full p-2 shadow-[3px_3px_0_#FFF7E2] animate-pulse">
+                  -HP
+                </span>
+              ) : (
+                ""
+              )}
+            </div>
             <HPBar type="boss" bars={bossHP} />
             <img
               src={boss}
@@ -178,9 +201,18 @@ function Game({ cards, setInGame }) {
               </div>
             </div>
             <div className="flex flex-col items-center">
-              <span className="font-bold text-white text-center text-[32px]">
-                YOUR HP
-              </span>
+              <div className="flex gap-2 items-center">
+                <span className="font-bold text-white text-center text-[32px]">
+                  YOUR HP
+                </span>
+                {takingDmg ? (
+                  <span className="text-white font-extrabold text-[32px] bg-red-700 rounded-full p-2 shadow-[3px_3px_0_#FFF7E2] animate-pulse">
+                    -HP
+                  </span>
+                ) : (
+                  ""
+                )}
+              </div>
               <HPBar type="player" bars={userHP} />
             </div>
           </div>

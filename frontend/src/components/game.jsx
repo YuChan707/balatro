@@ -7,6 +7,7 @@ import CardFlip from "./CardboardQuestion";
 import homeIcon from "./../assets/homeIcon.svg";
 import Button from "./button";
 import boss from "./../assets/first.png";
+import HPBar from "./HPBar";
 
 const MAX_HAND = 3;
 
@@ -77,7 +78,10 @@ function Game({ cards, setInGame }) {
               console.log("answered", { isCorrect, dmg, choice });
 
               if (isCorrect) {
-                //DEAL DMG
+                setBossHP((prev) => prev - dmg);
+                if (bossHP <= 0) {
+                  alert("YOU WIN!!!");
+                }
               } else {
                 setDiscardPile(selectedCard);
               }
@@ -93,11 +97,11 @@ function Game({ cards, setInGame }) {
         </div>
       ) : (
         <>
-          <div className="flex flex-col">
+          <div className="flex flex-col items-center">
             <span className="font-bold text-black text-center text-[32px]">
               PROFESSOR QUIZ
             </span>
-            HP_BAR
+            <HPBar type="boss" bars={bossHP} />
             <img
               src={boss}
               alt="boss"
@@ -135,7 +139,12 @@ function Game({ cards, setInGame }) {
                 <Button text={"Discard"} onClick={() => drawDiscard()} />
               </div>
             </div>
-            <div>HP</div>
+            <div className="flex flex-col items-center">
+              <span className="font-bold text-white text-center text-[32px]">
+                YOUR HP
+              </span>
+              <HPBar type="player" bars={userHP} />
+            </div>
           </div>
         </>
       )}

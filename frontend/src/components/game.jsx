@@ -14,6 +14,7 @@ function Game({ cards }) {
   const [turn, setTurn] = useState("player");
   const [round, setRound] = useState(1);
   const [selectedCard, setSelectedCard] = useState({});
+  const [cardAnswered, setCardAnswered] = useState(false);
 
   const draw = () => {
     if (drawPile) {
@@ -47,13 +48,40 @@ function Game({ cards }) {
       }}
     >
       {selectedCard.card_name ? (
-        <div className="flex items-center justify-center h-full">
+        <div className="flex items-center justify-center h-full relative">
+          {/* NEXT button placed at the top/start of the Game view */}
+          {cardAnswered && (
+            // center this container horizontally so it lines up with the internal Next button
+            <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-50" style={{ width: 270 }}>
+              <button
+                className="next"
+                onClick={() => {
+                  // advance / close the card
+                  setCardAnswered(false);
+                  // mirror the Card's internal next behavior: clear selectedCard
+                  setSelectedCard({});
+                }}
+              >
+                Next card
+              </button>
+            </div>
+          )}
+
           <CardFlip
             data={selectedCard}
-            onAnswer={() => {
-              console.log("test");
+            onAnswer={(isCorrect, dmg, choice) => {
+              // mark as answered so parent shows Next
+              setCardAnswered(true);
+              // original onAnswer behavior
+              console.log("answered", { isCorrect, dmg, choice });
             }}
-            onNext={() => {}}
+            onNext={() => {
+              // If Card calls onNext (e.g. via its internal Next), handle advancing here too
+              setCardAnswered(false);
+              setSelectedCard({}); // hide the card / return to hand view
+              // optionally move card to discard, etc.
+            }}
+            showInternalNext={false}
           />
         </div>
       ) : (

@@ -72,13 +72,14 @@ function Game({ cards, setInGame }) {
   }, []);
 
   return (
-    <div
-      className="h-screen w-screen bg-center bg-no-repeat bg-cover flex flex-col gap-[72px]"
-      style={{
-        backgroundImage: `url(${bg})`,
-      }}
-    >
-      {selectedCard?.card_name ? (
+    <div className="h-screen w-screen flex flex-col gap-[72px]">
+      <img
+        src={bg}
+        alt="bg"
+        className={`absolute -z-20 inset-0 w-full h-full object-cover ${selectedCard && "blur"}`}
+      />
+
+      {selectedCard ? (
         <div className="flex items-center justify-center h-full flex-col gap-[48px]">
           <CardFlip
             data={selectedCard}

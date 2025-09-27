@@ -15,7 +15,6 @@ function Game({ cards, setInGame }) {
   const [drawPile, setDrawPile] = useState([]);
   const [hand, setHand] = useState([]);
   const [discardPile, setDiscardPile] = useState(null);
-  const [turn, setTurn] = useState("player");
   const [round, setRound] = useState(1);
   const [bossHP, setBossHP] = useState(15);
   const [userHP, setUserHP] = useState(15);
@@ -23,8 +22,20 @@ function Game({ cards, setInGame }) {
   const [selectedCard, setSelectedCard] = useState(null);
   const [cardAnswered, setCardAnswered] = useState(false);
 
+  const takeDmg = () => {
+    const dmg = Math.floor(Math.random() * 4) + 1;
+    console.log("Taking dmg: ", dmg);
+
+    setUserHP((prev) => Math.max(prev - dmg, 0));
+
+    if (userHP <= 0) {
+      alert("You loose! :C");
+      setInGame(false);
+    }
+  };
+
   const draw = () => {
-    if (!drawPile) {
+    if (drawPile.length <= 0) {
       return;
     }
 
@@ -78,16 +89,19 @@ function Game({ cards, setInGame }) {
               console.log("answered", { isCorrect, dmg, choice });
 
               if (isCorrect) {
-                setBossHP((prev) => prev - dmg);
+                setBossHP((prev) => Math.max(prev - dmg, 0));
                 if (bossHP <= 0) {
                   alert("YOU WIN!!!");
+                  setInGame(false);
                 }
               } else {
+                takeDmg();
                 setDiscardPile(selectedCard);
               }
 
               setHand((prev) => prev.filter((c) => c != selectedCard));
               setSelectedCard(null);
+              setRound((prev) => prev + 1);
             }}
             onNext={() => {}}
             setIsCorrect={setIsCorrect}

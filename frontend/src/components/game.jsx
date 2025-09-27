@@ -16,10 +16,13 @@ function Game({ cards, setInGame }) {
   const [discardPile, setDiscardPile] = useState(null);
   const [turn, setTurn] = useState("player");
   const [round, setRound] = useState(1);
+  const [bossHP, setBossHP] = useState(15);
+  const [userHP, setUserHP] = useState(15);
+  const [isCorrect, setIsCorrect] = useState(null);
   const [selectedCard, setSelectedCard] = useState(null);
 
   const draw = () => {
-    if (drawPile) {
+    if (!drawPile) {
       return;
     }
 
@@ -66,10 +69,17 @@ function Game({ cards, setInGame }) {
         <div className="flex items-center justify-center h-full flex-col gap-[82px]">
           <CardFlip
             data={selectedCard}
-            onAnswer={() => {
-              console.log("test");
+            onAnswer={() => {}}
+            onNext={() => {
+              if (isCorrect) {
+                //DEAL DMG
+              } else {
+                setDiscardPile(selectedCard);
+              }
+
+              setHand((prev) => prev.filter((c) => c != selectedCard));
             }}
-            onNext={() => {}}
+            setIsCorrect={setIsCorrect}
           />
           <Button onClick={() => setSelectedCard(null)} text={"Cancel"} />
         </div>
@@ -114,7 +124,7 @@ function Game({ cards, setInGame }) {
                 ) : (
                   <div className="border-8 w-[156px] h-[200px]" />
                 )}
-                <Button text={"Discad"} onClick={() => drawDiscard()} />
+                <Button text={"Discard"} onClick={() => drawDiscard()} />
               </div>
             </div>
             <div>HP</div>

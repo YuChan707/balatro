@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import "./format_Card.css";
 import commonImg from "../assets/commonCard.png";
 import rareImg from "../assets/rareCard.png";
@@ -22,7 +22,7 @@ function normalizeRarity(r) {
   return RARITY_KEYS[key] || "common";
 }
 
-function CardFlip({ data, onAnswer, onNext }) {
+function CardFlip({ data, onAnswer, onNext, setIsCorrect }) {
   const [choice, setChoice] = useState(null);
   const [exiting, setExiting] = useState(false);
 
@@ -41,6 +41,7 @@ function CardFlip({ data, onAnswer, onNext }) {
     if (answered) return;
     setChoice(opt);
     onAnswer?.(opt === data.correct_answer, Number(data.dmg || 0), opt);
+    setIsCorrect(opt === data.correct_answer);
   };
 
   const handleReset = () => {

@@ -26,7 +26,15 @@ export default function Menu() {
       });
 
       if (response.ok) {
-        console.log(response);
+        let data = "bruh";
+
+        try {
+          data = await response.json();
+          console.log("worked");
+        } catch {
+          console.log("didnt work");
+          data = JSON.parse(await response.text());
+        }
         alert("File uploaded successfully!");
       } else {
         alert("File upload failed.");

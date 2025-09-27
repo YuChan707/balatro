@@ -1,0 +1,311 @@
+@import url('https://fonts.googleapis.com/css2?family=Recursive:wght@700;800;900&display=swap');
+
+:root {
+  --card-radius: 16px;
+  --frame: #f97316;
+  /* outer frame color (orange like the mock) */
+  --glow: rgba(249, 115, 22, .35);
+  --hp-gold: #fbbf24;
+}
+
+/* Container layout */
+.app {
+  min-height: 100vh;
+  background: #0f0f10;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+  justify-content: center;
+  font-family: "Poppins", sans-serif;
+}
+
+.app__score {
+  font-size: 18px;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Card */
+.card {
+  position: relative;
+  width: 270px;
+  height: 400px;
+  overflow: hidden;
+  border: 10px solid rgba(0, 0, 0, 0.7);
+  background: #111;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.35);
+  object-fit: fill;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Exit animation when moving to next card */
+.card--exit {
+  transform: scale(0.85) translateY(-40px);
+  opacity: 0;
+  transition: transform 320ms ease, opacity 320ms ease;
+}
+
+.card--common {
+  background: radial-gradient(110% 110% at 10% 0%, #f3f4f6 0%, #e5e7eb 40%, #cbd5e1 100%);
+}
+
+.card--uncommon {
+  background-image: url("/templates/uncommon.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.card--rare {
+  background-image: url("/templates/rare.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.card--epic {
+  background-image: url("/templates/epic.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.card--legendary {
+  background-image: url("/templates/legendary.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.card--exotic {
+  background-image: url("/templates/exotic.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.card--obsidian {
+  background-image: url("/templates/obsidian.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* dark overlay for contrast (doesn't block clicks) */
+.card__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.30);
+  pointer-events: none;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Centered content container placed above the background and overlay */
+.card__content {
+  position: relative;
+  z-index: 25;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 20px 80px 20px;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  text-shadow: 0 3px 0 rgba(255, 255, 255, 0.65), 0 8px 18px rgba(0,0,0,.45);
+}
+
+/* HP badge */
+.card__hp {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 30;
+  padding: 4px 8px;
+  border-radius: 8px;
+  color: var(--hp-gold);
+  font-family: "Recursive", system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 25px;
+  letter-spacing: .2px;
+
+}
+
+/* Question */
+.card__question {
+  align-content: left;
+  font-weight: 800;
+  font-size: 20px;
+  line-height: 1.25;
+  margin-bottom: 18px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, .8);
+  color: #fff;
+  font-family: "Recursive", system-ui, sans-serif;
+  text-shadow: 0 3px 0 rgba(0, 0, 0, .65), 0 8px 18px rgba(0, 0, 0, .45);
+}
+
+/* Answers container */
+.card__answers {
+  margin-top: 6px;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Buttons */
+.btn {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  border: 0.5px solid #ffffff;
+  background-color: #fff;
+  color: #ffffff;
+  position: relative;
+  transition: all 0.2s ease;
+  box-shadow: 5px 5px 0 #ffffff;
+  overflow: hidden;
+  text-decoration: none;
+  margin-bottom: 1rem;
+}
+
+.btn--tf {
+  background: #2e7d32;
+}
+
+/* Specific styling for True/False buttons (unanswered state) */
+.btn--tf-true { background: #16a34a !important; color: #fff;} /* green */
+.btn--tf-false { background: #b91c1c !important; color: #fff;} /* red */
+
+/* Keep True/False base colors (green/red) even after result classes are added */
+/* These selectors are intentionally specific and use !important to override the generic result styles for TF buttons */
+.btn--tf-true.btn--correct,
+.btn--tf-true.btn--wrong,
+.btn--tf-true.btn--neutral,
+.btn--tf-true:disabled {
+  background: #16a34a !important; /* green */
+  color: #fff !important;
+}
+
+.btn--tf-false.btn--correct,
+.btn--tf-false.btn--wrong,
+.btn--tf-false.btn--neutral,
+.btn--tf-false:disabled {
+  background: #b91c1c !important; /* red */
+  color: #fff !important;
+}
+
+/* True/False base (green) */
+.btn:hover:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.9;
+}
+
+/* Answer states after selection */
+.btn--correct {
+  background: #16a34a !important;
+}
+
+.btn--wrong {
+  background: #b91c1c !important;
+}
+
+/* Footer (name + rarity) */
+.card__footer {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: 20;
+  padding: 16px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+}
+
+.card__name {
+  font-weight: 500;
+  font-size: 20px;
+  text-shadow: 0 2px 2px rgba(0, 0, 0, .9);
+  transform: rotate(2deg);
+  font-family: "Recursive", system-ui, sans-serif;
+}
+
+.card__rarity {
+  opacity: .95;
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: .02em;
+}
+
+/* Result ribbon */
+.card__ribbon {
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  z-index: 30;
+  text-align: center;
+  color: #fff;
+  font-weight: 900;
+  padding: 10px 0;
+}
+
+.card__ribbon--ok {
+  background: rgba(22, 163, 74, .9);
+}
+
+.card__ribbon--nope {
+  background: rgba(185, 28, 28, .9);
+}
+
+
+/* Next button */
+.next {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 1000;
+  text-transform: uppercase;
+  border: 3px solid #000;
+  background-color: #fff;
+  color: #000;
+  position: relative;
+  transition: all 0.2s ease;
+  box-shadow: 5px 5px 0 #000;
+  overflow: hidden;
+  text-decoration: none;
+  margin-bottom: 1rem;
+}
+
+.next:disabled {
+  background: rgba(79, 70, 229, .45);
+  cursor: not-allowed;
+}
+
+/* Check again button container (appears after answer) */
+.card__checkagain {
+  position: absolute;
+  bottom: 72px;
+  /* above the footer */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 40;
+  font-family: "Poppins", sans-serif;
+}

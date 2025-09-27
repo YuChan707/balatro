@@ -5,16 +5,19 @@ import testData from "./../data/test.json";
 
 export default function Menu({ setInGame, setCards }) {
   const [selectedFile, setSelectedFile] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
   };
 
   const handleSubmit = async (event) => {
+    setLoading(true);
     event.preventDefault();
 
     if (!selectedFile) {
       alert("Please select a file.");
+      setLoading(false);
       return;
     }
 
@@ -48,6 +51,8 @@ export default function Menu({ setInGame, setCards }) {
     } catch (error) {
       console.error("Error uploading file:", error);
       alert(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -62,7 +67,11 @@ export default function Menu({ setInGame, setCards }) {
           type="file"
           onChange={handleFileChange}
         />
-        <Button type="submit" className="cursor-pointer" text="Upload File" />
+        <Button
+          type="submit"
+          className="cursor-pointer"
+          text={loading ? "Loading..." : "Upload File"}
+        />
       </form>
 
       <Button

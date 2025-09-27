@@ -103,9 +103,7 @@ function Game({ cards, setInGame }) {
               setSelectedCard(null);
               setRound((prev) => prev + 1);
             }}
-            onNext={() => {}}
             setIsCorrect={setIsCorrect}
-            showInternalNext={false}
           />
           <Button onClick={() => setSelectedCard(null)} text={"Cancel"} />
         </div>

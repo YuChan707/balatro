@@ -22,7 +22,7 @@ function normalizeRarity(r) {
   return RARITY_KEYS[key] || "common";
 }
 
-function CardFlip({ data, onAnswer, onNext, setIsCorrect }) {
+function CardFlip({ data, onAnswer, setIsCorrect }) {
   const [choice, setChoice] = useState(null);
   const [exiting, setExiting] = useState(false);
 
@@ -40,8 +40,11 @@ function CardFlip({ data, onAnswer, onNext, setIsCorrect }) {
   const handlePick = (opt) => {
     if (answered) return;
     setChoice(opt);
-    onAnswer?.(opt === data.correct_answer, Number(data.dmg || 0), opt);
-    setIsCorrect(opt === data.correct_answer);
+
+    setTimeout(() => {
+      onAnswer?.(opt === data.correct_answer, Number(data.dmg || 0), opt);
+      setIsCorrect(opt === data.correct_answer);
+    }, 500);
   };
 
   const rarityImages = {

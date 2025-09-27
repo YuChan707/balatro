@@ -151,7 +151,7 @@ function Game({ cards, setInGame }) {
         <>
           <div className="flex flex-col items-center">
             <div className="flex gap-2 items-center">
-              <span className="font-bold text-white text-center text-[32px]">
+              <span className="font-bold text-dark text-center text-[32px]">
                 PROFESSOR QUIZZ
               </span>
               {dealingDmg ? (

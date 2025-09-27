@@ -6,7 +6,6 @@ import Game from "./components/game";
 function App() {
   return (
     <>
-      <Game cards={testData} />
       <Menu />
     </>
   );

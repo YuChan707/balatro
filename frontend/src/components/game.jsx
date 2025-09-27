@@ -17,6 +17,8 @@ function Game({ cards, setInGame }) {
   const [turn, setTurn] = useState("player");
   const [round, setRound] = useState(1);
   const [selectedCard, setSelectedCard] = useState(null);
+  const [cardAnswered, setCardAnswered] = useState(false);
+  
 
   const draw = () => {
     if (drawPile) {
@@ -62,7 +64,7 @@ function Game({ cards, setInGame }) {
         backgroundImage: `url(${bg})`,
       }}
     >
-      {selectedCard.card_name ? (
+  {selectedCard?.card_name ? (
         <div className="flex items-center justify-center h-full">
           <CardFlip
             data={selectedCard}

@@ -44,24 +44,6 @@ function CardFlip({ data, onAnswer, onNext, setIsCorrect }) {
     setIsCorrect(opt === data.correct_answer);
   };
 
-  const handleReset = () => {
-    setChoice(null);
-  };
-
-  const handleNext = () => {
-    // play exit animation then notify parent to advance
-    setExiting(true);
-    const DURATION = 320; // ms, should match CSS transition
-    setTimeout(() => {
-      // call parent onNext if provided, otherwise reset locally
-      if (typeof onNext === "function") {
-        onNext();
-      } else {
-        handleReset();
-      }
-    }, DURATION);
-  };
-
   const rarityImages = {
     epic: epicImg,
     rare: rareImg,
@@ -85,22 +67,32 @@ function CardFlip({ data, onAnswer, onNext, setIsCorrect }) {
       <div className="card__content">
         <div className="card__question">{data.question}</div>
 
-        <div className="card__answers">
+        <div
+          className={`card__answers ${data.puzzle_type === "True_or_False" ? "card__answers--tf" : "card__answers--mc"}`}
+        >
           {options.map((opt) => {
             const picked = choice === opt;
             const correct = opt === data.correct_answer;
 
             // base class
+            // base class
             let cls = "btn";
 
-            // For True/False, add specific class so we can color True/False differently
-            if (data.puzzle_type === "True_or_False") {
+            const isTF = data.puzzle_type === "True_or_False";
+
+            if (isTF) {
+              // For True/False, color True green and False red from the start
               cls += opt === "True" ? " btn--tf-true" : " btn--tf-false";
+            } else {
+              // For multiple-choice keep default white buttons; we'll apply result classes after answering
             }
 
             if (answered) {
-              if (correct) cls += " btn--correct";
-              else if (picked) cls += " btn--wrong";
+              // after answering: mark correct/wrong
+              if (correct)
+                cls += " btn--correct"; // orange for MC, but TF overrides keep green/red
+              else if (picked)
+                cls += " btn--wrong"; // red for wrong
               else cls += " btn--neutral";
             }
 
@@ -134,11 +126,7 @@ function CardFlip({ data, onAnswer, onNext, setIsCorrect }) {
       )}
       {/* Check again button shown after answering */}
       {answered && (
-        <div className="card__checkagain" style={{ zIndex: 40 }}>
-          <button className="next" onClick={handleNext}>
-            Next card
-          </button>
-        </div>
+        <div className="card__checkagain" style={{ zIndex: 40 }}></div>
       )}
     </div>
   );

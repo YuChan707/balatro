@@ -20,6 +20,7 @@ function Game({ cards, setInGame }) {
   const [userHP, setUserHP] = useState(15);
   const [isCorrect, setIsCorrect] = useState(null);
   const [selectedCard, setSelectedCard] = useState(null);
+  const [cardAnswered, setCardAnswered] = useState(false);
 
   const draw = () => {
     if (!drawPile) {
@@ -65,12 +66,16 @@ function Game({ cards, setInGame }) {
         backgroundImage: `url(${bg})`,
       }}
     >
-      {selectedCard ? (
-        <div className="flex items-center justify-center h-full flex-col gap-[82px]">
+      {selectedCard?.card_name ? (
+        <div className="flex items-center justify-center h-full flex-col gap-[48px]">
           <CardFlip
             data={selectedCard}
-            onAnswer={() => {}}
-            onNext={() => {
+            onAnswer={(isCorrect, dmg, choice) => {
+              // mark as answered so parent shows Next
+              setCardAnswered(true);
+              // original onAnswer behavior
+              console.log("answered", { isCorrect, dmg, choice });
+
               if (isCorrect) {
                 //DEAL DMG
               } else {
@@ -78,8 +83,11 @@ function Game({ cards, setInGame }) {
               }
 
               setHand((prev) => prev.filter((c) => c != selectedCard));
+              setSelectedCard(null);
             }}
+            onNext={() => {}}
             setIsCorrect={setIsCorrect}
+            showInternalNext={false}
           />
           <Button onClick={() => setSelectedCard(null)} text={"Cancel"} />
         </div>

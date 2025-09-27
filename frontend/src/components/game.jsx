@@ -4,6 +4,7 @@ import bg from "./../assets/bg.png";
 import Card from "./Card";
 import { shuffle } from "./../utils/index";
 import CardFlip from "./CardboardQuestion";
+import homeIcon from "./../assets/homeIcon.svg";
 
 const MAX_HAND = 3;
 
@@ -80,6 +81,13 @@ function Game({ cards, setInGame }) {
           </div>
         </>
       )}
+
+      <button
+        className="absolute top-[32px] left-[32px] cursor-pointer hover:opacity-80"
+        onClick={() => setInGame(false)}
+      >
+        <img src={homeIcon} alt="homeIcon" />
+      </button>
     </div>
   );
 }

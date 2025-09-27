@@ -6,6 +6,7 @@ import { shuffle } from "./../utils/index";
 import CardFlip from "./CardboardQuestion";
 import homeIcon from "./../assets/homeIcon.svg";
 import Button from "./button";
+import boss from "./../assets/first.png";
 
 const MAX_HAND = 3;
 
@@ -15,7 +16,7 @@ function Game({ cards, setInGame }) {
   const [discardPile, setDiscardPile] = useState(null);
   const [turn, setTurn] = useState("player");
   const [round, setRound] = useState(1);
-  const [selectedCard, setSelectedCard] = useState({});
+  const [selectedCard, setSelectedCard] = useState(null);
 
   const draw = () => {
     if (drawPile) {
@@ -56,13 +57,13 @@ function Game({ cards, setInGame }) {
 
   return (
     <div
-      className="h-screen w-screen bg-center bg-no-repeat bg-cover flex flex-col"
+      className="h-screen w-screen bg-center bg-no-repeat bg-cover flex flex-col gap-[72px]"
       style={{
         backgroundImage: `url(${bg})`,
       }}
     >
-      {selectedCard.card_name ? (
-        <div className="flex items-center justify-center h-full">
+      {selectedCard ? (
+        <div className="flex items-center justify-center h-full flex-col gap-[82px]">
           <CardFlip
             data={selectedCard}
             onAnswer={() => {
@@ -70,10 +71,21 @@ function Game({ cards, setInGame }) {
             }}
             onNext={() => {}}
           />
+          <Button onClick={() => setSelectedCard(null)} text={"Cancel"} />
         </div>
       ) : (
         <>
-          <div>BOSS</div>
+          <div className="flex flex-col">
+            <span className="font-bold text-black text-center text-[32px]">
+              PROFESSOR QUIZ
+            </span>
+            HP_BAR
+            <img
+              src={boss}
+              alt="boss"
+              className="h-[320px] w-auto object-contain"
+            />
+          </div>
 
           <div className="flex flex-col self-center">
             <div className="flex gap-[128px]">

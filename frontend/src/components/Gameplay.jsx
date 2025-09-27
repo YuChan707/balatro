@@ -42,15 +42,6 @@ function Gameplay() {
             <button className="p-[30px] text-2xl text-white z-40 relative inline-flex items-center justify-center bg-black/70 rounded-full">
                 <FaHome />
             </button>
-
-            {/*{question ? (
-                <div className="absolute left-1/2 top-36 -translate-x-1/2 z-20">
-                    <Card data={question} onAnswer={handleAnswer} />
-                </div>
-            ) : (
-                <div className="text-white text-center mt-40">Loading question…</div>
-            )}*/}
-            {/* Render sample card below for quick manual testing when Data isn't ready */}
             <div className="absolute left-1/2 top-96 -translate-x-1/2 z-20">
                 <Card data={question || sampleCard} onAnswer={handleAnswer} onNext={handleNext} />
             </div>

@@ -1,10 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Recursive:wght@700;800;900&display=swap');
-
 :root {
   --card-radius: 16px;
   --frame: #f97316;
   /* outer frame color (orange like the mock) */
-  --glow: rgba(249, 115, 22, .35);
+  --glow: rgba(249, 115, 22, 0.35);
   --hp-gold: #fbbf24;
 }
 
@@ -18,19 +16,18 @@
   gap: 24px;
   align-items: center;
   justify-content: center;
-  font-family: "Poppins", sans-serif;
 }
 
 .app__score {
   font-size: 18px;
-  font-family: "Poppins", sans-serif;
 }
 
 /* Card */
 .card {
   position: relative;
-  width: 300px; /* slightly larger to accommodate 4 options */
-  height: 440px; /* increased height so options can fit comfortably */
+  width: 408px; /* slightly larger to accommodate 4 options */
+  height: 600px;
+  min-height: 600px;
   overflow: hidden;
   border: 10px solid rgba(0, 0, 0, 0.7);
   background: #111;
@@ -38,18 +35,28 @@
   background-position: center;
   box-shadow: 0 12px 26px rgba(0, 0, 0, 0.35);
   object-fit: fill;
-  font-family: "Poppins", sans-serif;
+  background-repeat: no-repeat;
 }
 
 /* Exit animation when moving to next card */
 .card--exit {
   transform: scale(0.85) translateY(-40px);
   opacity: 0;
-  transition: transform 320ms ease, opacity 320ms ease;
+  transition:
+    transform 320ms ease,
+    opacity 320ms ease;
 }
 
 .card--common {
-  background: radial-gradient(110% 110% at 10% 0%, #f3f4f6 0%, #e5e7eb 40%, #cbd5e1 100%);
+  background: radial-gradient(
+    110% 110% at 10% 0%,
+    #f3f4f6 0%,
+    #e5e7eb 40%,
+    #cbd5e1 100%
+  );
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 .card--uncommon {
@@ -98,40 +105,37 @@
 .card__overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.30);
+  background: rgba(0, 0, 0, 0.3);
   pointer-events: none;
-  font-family: "Poppins", sans-serif;
 }
 
 /* Centered content container placed above the background and overlay */
 .card__content {
   position: relative;
   z-index: 25;
-  height: 80%;
+  height: full;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 24px 20px 80px 20px;
   text-align: center;
-  font-family: "Poppins", sans-serif;
-  text-shadow: 0 3px 0 rgba(255, 255, 255, 0.65), 0 8px 18px rgba(0,0,0,.45);
+  text-shadow:
+    0 3px 0 rgba(255, 255, 255, 0.65),
+    0 8px 18px rgba(0, 0, 0, 0.45);
 }
 
 /* HP badge */
 .card__hp {
   position: absolute;
-  top: 8px;
   right: 10px;
   z-index: 30;
   padding: 4px 8px;
   border-radius: 8px;
   color: var(--hp-gold);
-  font-family: "Recursive", system-ui, sans-serif;
   font-weight: 800;
-  font-size: 25px;
-  letter-spacing: .2px;
-
+  font-size: 48px;
+  letter-spacing: 0.2px;
 }
 
 /* Question */
@@ -141,11 +145,13 @@
   /* clamp question size to keep content inside the card */
   font-size: clamp(16px, 2.2vw, 20px);
   line-height: 1.25;
-  margin-top: 30px;
+  margin-top: 64px;
   margin-bottom: 18px;
   color: #fff;
   font-family: "Recursive", system-ui, sans-serif;
-  text-shadow: 0 3px 0 rgba(0, 0, 0, .65), 0 8px 18px rgba(0, 0, 0, .45);
+  text-shadow:
+    0 3px 0 rgba(0, 0, 0, 0.65),
+    0 8px 18px rgba(0, 0, 0, 0.45);
 }
 
 /* Answers container */
@@ -154,7 +160,7 @@
   font-size: 20px;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
+  gap: 8px;
   /* limit height so 4 options fit; allow internal scrolling if content too large */
   max-height: 200%;
   width: 100%;
@@ -163,7 +169,6 @@
   overflow-y: auto;
   /* always show a scrollbar gutter so the text won't be under the scrollbar */
   scrollbar-gutter: stable both-edges;
-  font-family: "Poppins", sans-serif;
 }
 
 /* Buttons */
@@ -198,12 +203,16 @@
   width: 12px;
 }
 .card__answers::-webkit-scrollbar-thumb {
-  background: rgba(0,0,0,0.35);
+  background: rgba(0, 0, 0, 0.35);
   border-radius: 6px;
-  border: 2px solid rgba(255,255,255,0.85);
+  border: 2px solid rgba(255, 255, 255, 0.85);
 }
 .card__answers::-webkit-scrollbar-track {
-  background: rgba(255,255,255,0.05);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+button {
+  cursor: pointer;
 }
 
 .btn--tf {
@@ -211,8 +220,14 @@
 }
 
 /* Specific styling for True/False buttons (unanswered state) */
-.btn--tf-true { background: #16a34a !important; color: #fff;} /* green */
-.btn--tf-false { background: #b91c1c !important; color: #fff;} /* red */
+.btn--tf-true {
+  background: #16a34a !important;
+  color: #fff;
+} /* green */
+.btn--tf-false {
+  background: #b91c1c !important;
+  color: #fff;
+} /* red */
 
 /* Keep True/False base colors (green/red) even after result classes are added */
 /* These selectors are intentionally specific and use !important to override the generic result styles for TF buttons */
@@ -265,24 +280,23 @@
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  font-family: "Poppins", sans-serif;
   font-weight: bold;
 }
 
 .card__name {
   font-weight: 500;
   font-size: clamp(12px, 1.6vw, 20px);
-  text-shadow: 0 2px 2px rgba(0, 0, 0, .9);
+  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.9);
   transform: rotate(2deg);
   font-family: "Recursive", system-ui, sans-serif;
 }
 
 .card__rarity {
-  opacity: .95;
+  opacity: 0.95;
   font-size: clamp(10px, 1.2vw, 13px);
   font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: .02em;
+  letter-spacing: 0.02em;
 }
 
 /* here reduce spacing to fit */
@@ -311,13 +325,12 @@
 }
 
 .card__ribbon--ok {
-  background: rgba(22, 163, 74, .9);
+  background: rgba(22, 163, 74, 0.9);
 }
 
 .card__ribbon--nope {
-  background: rgba(185, 28, 28, .9);
+  background: rgba(185, 28, 28, 0.9);
 }
-
 
 /* Next button */
 .next {
@@ -340,7 +353,7 @@
 }
 
 .next:disabled {
-  background: rgba(79, 70, 229, .45);
+  background: rgba(79, 70, 229, 0.45);
   cursor: not-allowed;
 }
 
@@ -350,5 +363,5 @@
   left: 50%;
   transform: translateX(-50%);
   z-index: 40;
-  font-family: "Poppins", sans-serif;
 }
+

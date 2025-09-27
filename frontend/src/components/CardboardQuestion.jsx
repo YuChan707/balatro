@@ -61,7 +61,7 @@ function CardFlip({ data, onAnswer, onNext, setIsCorrect }) {
 
       <div className="card__hp">
         {data.dmg}{" "}
-        <span style={{ fontSize: 12, verticalAlign: "top" }}>HP</span>
+        <span style={{ fontSize: 24, verticalAlign: "middle" }}>HP</span>
       </div>
 
       <div className="card__content">

@@ -1,12 +1,19 @@
+import { useState } from "react";
 import "./App.css";
 import Game from "./components/game";
 import Menu from "./components/menu";
 import testData from "./data/test.json";
 
 function App() {
+  const [inGame, setInGame] = useState(false);
+
   return (
     <>
-      <Game cards={testData} />
+      {!inGame ? (
+        <Menu setInGame={setInGame} />
+      ) : (
+        <Game cards={testData} setInGame={setInGame} />
+      )}
     </>
   );
 }

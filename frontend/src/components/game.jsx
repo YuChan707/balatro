@@ -21,6 +21,14 @@ function Game({ cards, setInGame }) {
   const [isCorrect, setIsCorrect] = useState(null);
   const [selectedCard, setSelectedCard] = useState(null);
   const [cardAnswered, setCardAnswered] = useState(false);
+  const [rotateBoss, setRotateBoss] = useState(false);
+
+  useEffect(() => {
+    setRotateBoss(true);
+    setTimeout(() => {
+      setRotateBoss(false);
+    }, 800);
+  }, [bossHP]);
 
   const takeDmg = () => {
     const dmg = Math.floor(Math.random() * 4) + 1;
@@ -118,7 +126,7 @@ function Game({ cards, setInGame }) {
             <img
               src={boss}
               alt="boss"
-              className="h-[320px] w-auto object-contain"
+              className={`h-[320px] w-auto object-contain ${rotateBoss && "rotate-y-180"}`}
             />
           </div>
 

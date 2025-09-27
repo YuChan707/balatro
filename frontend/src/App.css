@@ -31,17 +31,13 @@
 .upbutton {
   background-color: black;
   color: white;
-
-  
 }
-.Button{
-  color:white;
+.Button {
+  color: white;
   background-color: black;
   font-family: "Baloo 2", sans-serif;
   font-size: 30px;
 }
-
-
 
 .text-stroke {
   -webkit-text-stroke: 3px #1e1e2f;
@@ -51,4 +47,3 @@
 .name-stroke {
   -webkit-text-fill-color: #1e1e2f;
 }
-

@@ -7,7 +7,13 @@ import HP from "./../assets/hp.svg";
 
 function Card({ side = "front", cardDetail, onTap, isRetry = false }) {
   if (side === "back") {
-    return <img src={backCard} alt="card back" height={200} width="auto" />;
+    return (
+      <img
+        src={backCard}
+        alt="card back"
+        className="min-h-[200px] h-[200px] max-h-[200px]"
+      />
+    );
   }
 
   let background = commonCard;

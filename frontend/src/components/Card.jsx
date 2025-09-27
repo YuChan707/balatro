@@ -5,7 +5,7 @@ import rareCard from "./../assets/rareCard.png";
 import epicCard from "./../assets/epicCard.png";
 import HP from "./../assets/hp.svg";
 
-function Card({ side = "front", cardDetail, onTap, isRetry = false }) {
+function Card({ side = "front", cardDetail, onTap }) {
   if (side === "back") {
     return (
       <img
@@ -31,7 +31,7 @@ function Card({ side = "front", cardDetail, onTap, isRetry = false }) {
         backgroundImage: `url(${background})`,
         width: 136.5,
         height: 200,
-        border: isRetry ? "4px solid #FFC857" : "none",
+        border: cardDetail.isRetry ? "4px solid #FFC857" : "none",
       }}
     >
       <div

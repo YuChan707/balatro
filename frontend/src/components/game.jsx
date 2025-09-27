@@ -30,6 +30,17 @@ function Game({ cards, setInGame }) {
     }, 800);
   }, [bossHP]);
 
+  const takeDmgBy = (amount) => {
+    console.log("Taking dmg: ", amount);
+
+    setUserHP((prev) => Math.max(prev - amount, 0));
+
+    if (userHP <= 0) {
+      alert("You loose! :C");
+      setInGame(false);
+    }
+  };
+
   const takeDmg = () => {
     const dmg = Math.floor(Math.random() * 4) + 1;
     console.log("Taking dmg: ", dmg);
@@ -65,7 +76,9 @@ function Game({ cards, setInGame }) {
       return;
     }
 
-    setHand((prev) => [...prev, discardPile]);
+    const card = { ...discardPile, isRetry: true };
+
+    setHand((prev) => [...prev, card]);
     setDiscardPile(null);
   };
 
@@ -104,7 +117,11 @@ function Game({ cards, setInGame }) {
                   setInGame(false);
                 }
               } else {
-                takeDmg();
+                if (selectedCard.isRetry) {
+                  takeDmgBy(selectedCard.dmg + 1);
+                } else {
+                  takeDmg();
+                }
                 setDiscardPile(selectedCard);
               }
 

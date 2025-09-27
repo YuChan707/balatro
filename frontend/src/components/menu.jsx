@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import logo from "./../assets/logo.svg";
 import Button from "./button";
 
-export default function Menu({ setInGame }) {
+export default function Menu({ setInGame, setCards }) {
   const [selectedFile, setSelectedFile] = useState(null);
 
   const handleFileChange = (event) => {
@@ -37,6 +37,10 @@ export default function Menu({ setInGame }) {
           data = JSON.parse(await response.text());
         }
         alert("File uploaded successfully!");
+
+        console.log(data);
+        setCards(data);
+        setInGame(true);
       } else {
         alert("File upload failed.");
       }

@@ -1,145 +1,84 @@
 [
   {
     "card_name": "Photosynthesis Fact",
-
     "rarity": "Common",
-
     "dmg": 2,
-
     "puzzle_type": "True_or_False",
-
     "question": "Photosynthesis occurs in the mitochondria of plant cells.",
-
     "options": ["True", "False"],
-
     "correct_answer": "False"
   },
-
   {
     "card_name": "Basic Addition",
-
     "rarity": "Common",
-
     "dmg": 2,
-
     "puzzle_type": "Multiple Choice",
-
     "question": "What is 7 + 5?",
-
     "options": ["11", "12", "13", "14"],
-
     "correct_answer": "12"
   },
-
   {
     "card_name": "Pythagoras Check",
-
     "rarity": "Rare",
-
     "dmg": 3,
-
     "puzzle_type": "True_or_False",
-
     "question": "In a right triangle with legs 3 and 4, the hypotenuse is 5.",
-
     "options": ["True", "False"],
-
     "correct_answer": "True"
   },
-
   {
     "card_name": "Algebra Application",
-
     "rarity": "Rare",
-
     "dmg": 3,
-
     "puzzle_type": "Multiple Choice",
-
     "question": "Solve for x: 2x + 3 = 11",
-
     "options": ["3", "4", "5", "6"],
-
     "correct_answer": "4"
   },
-
   {
     "card_name": "Sorting Strategy",
-
     "rarity": "Epic",
-
     "dmg": 4,
-
     "puzzle_type": "Multiple Choice",
-
     "question": "Which sorting algorithm is most efficient on large datasets on average?",
-
     "options": [
       "Bubble Sort",
-
       "Merge Sort",
-
       "Insertion Sort",
-
       "Selection Sort"
     ],
-
     "correct_answer": "Merge Sort"
   },
-
   {
     "card_name": "Pointer Precision",
-
     "rarity": "Epic",
-
     "dmg": 4,
-
     "puzzle_type": "Multiple Choice",
-
     "question": "Which of the following prevents a pointer from modifying the value it points to?",
-
     "options": [
       "int *ptr;",
-
       "const int *ptr;",
-
       "int *const ptr;",
-
       "int const ptr;"
     ],
-
     "correct_answer": "const int *ptr;"
   },
-
   {
     "card_name": "Genetic Translation Test",
-
     "rarity": "Epic",
-
     "dmg": 4,
-
     "puzzle_type": "Multiple Choice",
-
     "question": "Which process converts RNA into a sequence of amino acids?",
-
     "options": ["Transcription", "Translation", "Replication", "Translocation"],
-
     "correct_answer": "Translation"
   },
-
   {
     "card_name": "Cell Division Fact",
-
     "rarity": "Rare",
-
     "dmg": 3,
-
     "puzzle_type": "True_or_False",
-
     "question": "Mitosis results in two identical daughter cells.",
-
     "options": ["True", "False"],
-
     "correct_answer": "True"
   }
 ]

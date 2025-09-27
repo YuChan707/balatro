@@ -5,6 +5,7 @@ import os
 from flask_cors import CORS
 from google import genai
 from dotenv import load_dotenv
+import json
 
 
 def create_cards():
@@ -53,8 +54,9 @@ def upload_file():
         filename = secure_filename("file.pdf")
         file.save(os.path.join(app.config["UPLOAD_FOLDER"], filename))
     cards = create_cards()
+    data = json.loads(cards)
 
-    return jsonify(cards), 200
+    return jsonify(data), 200
 
 
 if __name__ == "__main__":

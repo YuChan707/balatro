@@ -6,13 +6,14 @@ import testData from "./data/test.json";
 
 function App() {
   const [inGame, setInGame] = useState(false);
+  const [cards, setCards] = useState([]);
 
   return (
     <>
       {!inGame ? (
-        <Menu setInGame={setInGame} />
+        <Menu setInGame={setInGame} setCards={setCards} />
       ) : (
-        <Game cards={testData} setInGame={setInGame} />
+        <Game cards={cards} setInGame={setInGame} />
       )}
     </>
   );

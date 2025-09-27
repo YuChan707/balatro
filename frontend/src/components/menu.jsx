@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import logo from "./../assets/logo.svg";
+import Button from "./button";
 
 export default function Menu({ setInGame }) {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -47,7 +48,7 @@ export default function Menu({ setInGame }) {
 
   return (
     <div className="background-image">
-      <img src={logo} alt="logo" />
+      <img src={logo} alt="logo" className="mb-[86px]" />
 
       <form onSubmit={handleSubmit} className="nameIn">
         <input
@@ -56,17 +57,15 @@ export default function Menu({ setInGame }) {
           type="file"
           onChange={handleFileChange}
         />
-        <button
-          type="button"
-          className="cursor-pointer"
-          onClick={() => setInGame(true)}
-        >
-          Play
-        </button>
-        <button type="submit" className="cursor-pointer">
-          Upload File
-        </button>
+        <Button type="submit" className="cursor-pointer" text="Upload File" />
       </form>
+
+      <Button
+        type="button"
+        className="cursor-pointer"
+        onClick={() => setInGame(true)}
+        text="Play"
+      />
     </div>
   );
 }

@@ -57,7 +57,7 @@ export default function Menu({ setInGame, setCards }) {
 
       <form onSubmit={handleSubmit} className="nameIn">
         <input
-          className="text-white bg-[#523D57] text-[20px] px-4 py-2"
+          className="text-white bg-[#523D57] text-[20px] px-4 py-2 me-8"
           placeholder="Subject Name"
           type="file"
           onChange={handleFileChange}

@@ -25,7 +25,7 @@ function Card({ side = "front", cardDetail, onTap, isRetry = false }) {
 
   return (
     <div
-      className="bg-no-repeat bg-center bg-contain flex flex-col justify-between px-2 cursor-pointer hover:opacity-85 hover:rotate-3 shadow pop-in"
+      className="bg-no-repeat bg-center bg-contain flex flex-col justify-between px-2 cursor-pointer hover:opacity-85 hover:rotate-3 drop-shadow-2xl pop-in"
       onClick={() => onTap()}
       style={{
         backgroundImage: `url(${background})`,

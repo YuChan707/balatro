@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import logo from "./../assets/logo.svg";
 
-export default function Menu() {
+export default function Menu({ setInGame }) {
   const [selectedFile, setSelectedFile] = useState(null);
 
   const handleFileChange = (event) => {
@@ -56,7 +56,13 @@ export default function Menu() {
           type="file"
           onChange={handleFileChange}
         />
-        <button type="button">Play</button>
+        <button
+          type="button"
+          className="cursor-pointer"
+          onClick={() => setInGame(true)}
+        >
+          Play
+        </button>
         <button type="submit" className="cursor-pointer">
           Upload File
         </button>

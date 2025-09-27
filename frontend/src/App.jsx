@@ -8,7 +8,13 @@ function App() {
   const [inGame, setInGame] = useState(false);
 
   return (
-    <>{!inGame ? <Menu /> : <Game cards={testData} setInGame={setInGame} />}</>
+    <>
+      {!inGame ? (
+        <Menu setInGame={setInGame} />
+      ) : (
+        <Game cards={testData} setInGame={setInGame} />
+      )}
+    </>
   );
 }
 

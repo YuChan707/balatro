@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import logo from "./../assets/logo.svg";
 import Button from "./button";
+import testData from "./../data/test.json";
 
 export default function Menu({ setInGame, setCards }) {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -67,8 +68,11 @@ export default function Menu({ setInGame, setCards }) {
       <Button
         type="button"
         className="cursor-pointer"
-        onClick={() => setInGame(true)}
-        text="Play"
+        onClick={() => {
+          setInGame(true);
+          setCards(testData);
+        }}
+        text="Play Demo"
       />
     </div>
   );

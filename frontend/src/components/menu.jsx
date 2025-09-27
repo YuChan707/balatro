@@ -26,7 +26,7 @@ export default function Menu() {
       });
 
       if (response.ok) {
-        let data = "bruh";
+        let data = "";
 
         try {
           data = await response.json();
@@ -48,7 +48,22 @@ export default function Menu() {
   return (
     <div className="background-image">
       <img src={logo} alt="logo" />
-
+      <table>
+        <thead>
+          <tr>
+            <th>Set</th>
+            <th>Completion</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Sample</td>
+            <td>85%</td>
+            { <td><button>Select</button></td> /* when click, say selected and update curent choose file location to set name */}
+          </tr>
+        </tbody>
+      </table>
       <form onSubmit={handleSubmit} className="nameIn">
         <input
           className="text-white bg-[#523D57] text-[20px] px-4 py-2"
@@ -56,7 +71,7 @@ export default function Menu() {
           type="file"
           onChange={handleFileChange}
         />
-        <button type="button">Play</button>
+        <button type="button" className="cursor-pointer Button">Play</button>
         <button type="submit" className="cursor-pointer">
           Upload File
         </button>

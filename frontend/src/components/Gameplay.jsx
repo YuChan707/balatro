@@ -3,7 +3,7 @@ import { FaHome } from 'react-icons/fa';
 import Card from './CardboardQuestion';
 import { useEffect, useState } from 'react';
 import Data from '../assets/exampleQuestions.json'
-import sampleCard from './sampleCard'
+import sampleCard from '../game/sampleCard'
 
 function Gameplay() {
     const [index, setIndex] = useState(0);

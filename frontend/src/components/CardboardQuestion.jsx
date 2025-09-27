@@ -123,7 +123,7 @@ function Card({ data, onAnswer, onNext }) {
       {/* Result ribbon */}
       {answered && (
         <div className={`card__ribbon ${isCorrect ? "card__ribbon--ok" : "card__ribbon--nope"}`}>
-          {isCorrect ? "Correct!" : "Try Again"}
+          {isCorrect ? "Correct!" : "INCORRECT"}
         </div>
       )}
       {/* Check again button shown after answering */}

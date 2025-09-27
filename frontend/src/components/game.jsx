@@ -48,7 +48,7 @@ function Game({ cards }) {
 
       <div className="flex flex-col self-center">
         <div className="flex">
-          <div>Draw</div>
+          <div className="flex flex-col gap-[31px]"></div>
 
           <div className="flex gap-6">
             {hand.map((card, index) => (
